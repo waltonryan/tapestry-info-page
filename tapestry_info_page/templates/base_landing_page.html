@@ -1,0 +1,11 @@
+{% load static from staticfiles %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css">
+            {% block title %}<title>Tapestry</title>{% endblock %}
+            </head>
+    <body>
+        {% block content %}There appears to be a problem with tapestry's landing page. The issue will be resolved shortly.{% endblock %}
+    </body>
+</html>

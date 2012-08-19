@@ -1,8 +1,13 @@
 # Django settings for tapestry_info_page project.
+import socket
+import os
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 
+if socket.gethostname() == 'Ryan-Waltons-MacBook-Pro.local':
+    DEBUG = True
+else:
+    DEBUG = False
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
@@ -56,14 +61,18 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = os.path.join(SITE_ROOT, 'static')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
+if socket.gethostname() == 'Ryan-Waltons-MacBook-Pro.local':
+    STATIC_URL = 'http://127.0.0.1:8000/tapestry_info_page/static/'
+else:
+    STATIC_URL = 'http://stormy-crag-3414.herokuapp.com/vetchapp/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
+    '/Users/Ryan/Projects/tapestry_info/tapestry_info_page/static_files',
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -103,6 +112,7 @@ ROOT_URLCONF = 'tapestry_info_page.urls'
 WSGI_APPLICATION = 'tapestry_info_page.wsgi.application'
 
 TEMPLATE_DIRS = (
+	 os.path.join(SITE_ROOT, 'templates'),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
